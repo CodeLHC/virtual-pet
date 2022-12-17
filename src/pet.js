@@ -12,6 +12,15 @@ function Pet(name) {
   this.fitness = MAXIMUM_FITNESS;
 }
 
+Pet.prototype = {
+  get isAlive() {
+    const isFit = this.fitness > 0;
+    const isYoung = this.age < 30;
+    const isNotHungry = this.hunger < 10;
+    return isYoung && isNotHungry && isFit;
+  },
+};
+
 Pet.prototype.growUp = function () {
   this.age += 1;
   this.hunger += HUNGER_INCREASE;
