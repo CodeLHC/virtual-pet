@@ -19,19 +19,37 @@ Pet.prototype.growUp = function () {
 };
 
 Pet.prototype.walk = function () {
-  if (this.fitness + FITNESS_INCREASE <= MAXIMUM_FITNESS) {
-    this.fitness += FITNESS_INCREASE;
+  const incrementedFitness = this.fitness + FITNESS_INCREASE;
+  if (incrementedFitness <= MAXIMUM_FITNESS) {
+    this.fitness = incrementedFitness;
   } else {
     this.fitness = MAXIMUM_FITNESS;
   }
 };
 
 Pet.prototype.feed = function () {
-  if (this.hunger - HUNGER_DECREASE >= STARTING_HUNGER) {
-    this.hunger -= HUNGER_DECREASE;
+  const decrementedHunger = this.hunger - HUNGER_DECREASE;
+  if (decrementedHunger >= STARTING_HUNGER) {
+    this.hunger = decrementedHunger;
   } else {
     this.hunger = STARTING_HUNGER;
   }
+};
+
+Pet.prototype.checkup = function () {
+  const isHungry = this.hunger >= 5;
+  const isUnfit = this.fitness <= 3;
+
+  if (isHungry && isUnfit) {
+    return "I am hungry AND I need a walk";
+  }
+  if (isUnfit) {
+    return "I need a walk";
+  }
+  if (isHungry) {
+    return "I am hungry";
+  }
+  return "I feel great!";
 };
 
 module.exports = Pet;
