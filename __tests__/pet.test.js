@@ -165,3 +165,19 @@ describe("adoptChild", () => {
     expect(pet1.children).toEqual([pet2, pet3]);
   });
 });
+
+describe("haveBaby", () => {
+  test("creates baby pet and adds to children array when function is called", () => {
+    const pet1 = new Pet("Fido");
+    const pet2 = new Pet("Goldie");
+    pet1.haveBaby(pet2);
+    expect(pet1.children).toEqual([pet2]);
+  });
+  test("adds baby pet to children array with existing elements", () => {
+    const pet1 = new Pet("Fido");
+    const pet2 = new Pet("Goldie");
+    pet1.children = ["Billy"];
+    pet1.haveBaby(pet2);
+    expect(pet1.children).toEqual(["Billy", pet2]);
+  });
+});
