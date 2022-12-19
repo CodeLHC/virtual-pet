@@ -144,3 +144,24 @@ describe("isAlive", () => {
     pet.age = expect(pet.isAlive).toEqual(true);
   });
 });
+
+describe("adoptChild", () => {
+  test("ensures pet has children property", () => {
+    const pet = new Pet("Fido");
+    expect(pet.children).toEqual([]);
+  });
+  test("adds the second pet as the first element in the original parent children array property", () => {
+    const pet1 = new Pet("Fido");
+    const pet2 = new Pet("Goldie");
+    pet1.adoptChild(pet2);
+    expect(pet1.children).toEqual([pet2]);
+  });
+  test("adds the second pet as the first element in the original parent children array property and third pet as second element in the array.", () => {
+    const pet1 = new Pet("Fido");
+    const pet2 = new Pet("Goldie");
+    const pet3 = new Pet("Loof");
+    pet1.adoptChild(pet2);
+    pet1.adoptChild(pet3);
+    expect(pet1.children).toEqual([pet2, pet3]);
+  });
+});
